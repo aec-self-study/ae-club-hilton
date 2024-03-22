@@ -32,6 +32,12 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   coffee_shop_hilton:
-    # Config indicated by + and applies to all files under models/example/
-    example:
-      +materialized: view
+    - name: customers
+      description: find basic info about all customers
+      columns: 
+        - name: customer_id
+          description: primary key of the model- one id per customer
+          tests:
+            - unique
+            - not_null
+            - more_than_one_order
