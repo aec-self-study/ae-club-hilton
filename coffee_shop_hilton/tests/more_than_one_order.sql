@@ -1,3 +1,4 @@
+-- writing a test that will fail!
 select
   customer_id,
   number_of_orders
