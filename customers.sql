@@ -1,21 +1,26 @@
-with customer_orders as (
-  select
-     customer_id
-     , count(*) as n_orders
-     , min(created_at) as first_order_at
+-- Creating order count and finding date of first order
+with first_order as (
+    select 
+      customer_id,
+      count(*) as number_of_orders,
+      min(created_at) as first_order_at
+    from `analytics-engineers-club.coffee_shop.orders` 
+  group by customer_id
+  )
 
-  from `analytics-engineers-club.coffee_shop.orders` 
-  group by 1
-)
-
+-- Grabbing name/ email from customer table
 select 
-  customers.id as customer_id
-  , customers.name
-  , customers.email
-  , coalesce(customer_orders.n_orders, 0) as n_orders
-  , customer_orders.first_order_at
-from `analytics-engineers-club.coffee_shop.customers` as customers
-left join  customer_orders
-  on  customers.id = customer_orders.customer_id 
+  first_order.customer_id,
+  c.name,
+  c.email,
+  first_order.first_order_at,
+  first_order.number_of_orders
+from
+  first_order
 
-limit 5
+-- Joining with above info
+join `analytics-engineers-club.coffee_shop.customers` c
+  on first_order.customer_id=c.id
+
+-- Ordering by first order date
+order by first_order_at
