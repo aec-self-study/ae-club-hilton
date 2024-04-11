@@ -1,4 +1,4 @@
-
+-- Revenue on a weekly basis by product category
 select
     r.week, 
     p.category,
