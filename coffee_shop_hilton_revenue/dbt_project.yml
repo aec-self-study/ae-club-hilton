@@ -23,3 +23,5 @@ clean-targets:
 models:
   coffee_shop_hilton_revenue:
     - name: coffee_orders
+    - name: weekly_revenue_customer_type
+    - name: weekley_revenue_product_category
