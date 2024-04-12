@@ -13,15 +13,14 @@ from `analytics-engineers-club.web_tracking.pageviews`
 order by visitor_id, timestamp desc
 )
 
--- Creates a new visitor_id unique for each customer (but standard across visits) (visitor_id will still be NULL if no one logged in)
+--Creates a new visitor_id unique for each customer (but standard across visits) (visitor_id will still be NULL if no one logged in)
 select 
-  visitor_id as visitor_id_raw
-  , c.customer_id
-  , case when _group is null then visitor_id 
-  else first_value(visitor_id) over (partition by _group order by timestamp desc) end as visitor_id
-  , _group
+  case when _group is null then visitor_id 
+    else first_value(visitor_id) over (partition by _group order by timestamp desc) end as visitor_id
+  , _group as customer_id
   , device_type
   , timestamp
   , page
 from c
+
 order by timestamp
