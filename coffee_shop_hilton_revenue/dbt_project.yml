@@ -25,3 +25,4 @@ models:
     - name: coffee_orders
     - name: weekly_revenue_customer_type
     - name: weekley_revenue_product_category
+    - name: product_category_jinga_practice
