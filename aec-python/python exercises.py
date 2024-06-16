@@ -70,7 +70,3 @@ def test_function(dict):
         print(dict[k]**.5)
 
 test_function(id_lookup)
-
-
-
-
