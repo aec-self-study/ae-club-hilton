@@ -1,2 +1,2 @@
 # aec-template
-This is a template for Analytics Engineers Club!
+Katie Hilton AEC GIT repo
