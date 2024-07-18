@@ -1,8 +1,9 @@
 -- All coffee orders with price information and flags if it is a new customer
 select
     item.product_id,
+    products.name,
+    products.category,
     item.order_id,
-    coffee_orders.id,
     coffee_orders.customer_id,
     coffee_orders.created_at,
     coffee_orders.total,
@@ -17,5 +18,8 @@ left join `analytics-engineers-club.coffee_shop.orders` coffee_orders
 left join `analytics-engineers-club.coffee_shop.product_prices` as prices
     on item.product_id = prices.product_id
     and coffee_orders.created_at between prices.created_at and prices.ended_at
+
+left join `analytics-engineers-club.coffee_shop.products` products
+    on item.product_id = products.id
 
 order by customer_id, created_at, order_id, product_id
