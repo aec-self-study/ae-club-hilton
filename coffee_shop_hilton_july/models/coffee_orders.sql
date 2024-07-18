@@ -1,8 +1,8 @@
 -- All coffee orders with price information and flags if it is a new customer
 select
     item.product_id,
-    products.name,
-    products.category,
+    prices.name,
+    prices.category,
     item.order_id,
     coffee_orders.customer_id,
     coffee_orders.created_at,
@@ -15,11 +15,8 @@ from `analytics-engineers-club.coffee_shop.order_items` item
 left join `analytics-engineers-club.coffee_shop.orders` coffee_orders
     on item.order_id = coffee_orders.id
 
-left join `analytics-engineers-club.coffee_shop.product_prices` as prices
+left join {{ ref('price_history') }} as prices
     on item.product_id = prices.product_id
     and coffee_orders.created_at between prices.created_at and prices.ended_at
-
-left join `analytics-engineers-club.coffee_shop.products` products
-    on item.product_id = products.id
 
 order by customer_id, created_at, order_id, product_id

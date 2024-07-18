@@ -1,3 +1,4 @@
+-- Creating customers view- one ID per customer with first order, name, email, and number of orders
 -- Creating order count and finding date of first order
 with first_order as (
     select 
