@@ -1,6 +1,6 @@
 My name is Katie Hilton, I use they/them pronouns. I am taking this
 class to learn more about the software/ engineering side of data. 
-I currently do data anlalytics for a non-profit that does research
+I currently do data analytics for a non-profit that does research
 on youth civic engagement. I have a history of working in progressive
 politics. I am not sure what I want to do next, but I know that I 
 really enjoy coding in R and I am hoping to learn more in this class,
