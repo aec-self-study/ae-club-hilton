@@ -18,6 +18,12 @@ seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
+vars:
+  github_source:
+    github_database: analytics-engineers-club
+    github_schema: github 
+    github__using_repo_team: false
+
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
@@ -40,6 +46,13 @@ models:
     - name: weekly_revenue_customer_type
     - name: weekley_revenue_product_category
     - name: product_category_jinga_practice
+    - name: price_history
+      tests:
+        - dbt_utils.mutually_exclusive_ranges:
+          lower_bound_column: created_at
+          upper_bound_column: ended_at
+          partition_by: product_id
+          gaps: not_allowed
     - name: user_stitching
       materialized: table
       columns: 
