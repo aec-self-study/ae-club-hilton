@@ -1,2 +1,2 @@
-# aec-template
+# readme
 Katie Hilton AEC GIT repo
